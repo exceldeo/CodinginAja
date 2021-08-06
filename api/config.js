@@ -1,13 +1,13 @@
-const env = process.env;
+const env = require('dotenv').config()
 
 const config = {
   db: { /* don't expose password or any sensitive info, done only for demo */
-    host: env.DB_HOST || 'freedb.tech',
-    user: env.DB_USER || 'freedbtech_geshan-lr',
-    password: env.DB_PASSWORD || 'G2VjjQ5d47zyjqX',
-    database: env.DB_NAME || 'freedbtech_language',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'codinginaja',
   },
-  listPerPage: env.LIST_PER_PAGE || 10,
+  listPerPage: process.env.LIST_PER_PAGE || 10,
 };
 
 module.exports = config;

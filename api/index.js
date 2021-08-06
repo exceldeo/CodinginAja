@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const tasksRouter = require("./routes/tasks");
-
+const config = require('./config');
 const app = express();
 
 app.use(bodyParser.json());
@@ -20,6 +20,5 @@ app.use((err, req, res, next) => {
 
   return;
 });
-
 
 app.listen(3000, () => console.log("Server is running at http://localhost:3000"));

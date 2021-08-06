@@ -4,7 +4,7 @@ const tasks = require('../services/tasks');
 
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await tasks.getMultiple(req.query.page));
+    res.json(await tasks.get());
   } catch (err) {
     console.error(`Error while getting tasks `, err.message);
     next(err);

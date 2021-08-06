@@ -2,66 +2,77 @@ const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
 
-async function getMultiple(page = 1) {
-  const offset = helper.getOffset(page, config.listPerPage);
+async function get() {
   const rows = await db.query(
-    `SELECT id, name FROM tasks LIMIT ?,?`, 
-    [offset, config.listPerPage]
+    `SELECT * FROM kelas`
   );
   const data = helper.emptyOrRows(rows);
-  const meta = {page};
 
-  return {
-    data,
-    meta
-  }
+  return data;
+  
 }
 
-async function create(name) {
-  const result = await db.query(
-    'INSERT INTO tasks(name) VALUES (?)', [name]
-  );
+// async function getMultiple(page = 1) {
+//   const offset = helper.getOffset(page, config.listPerPage);
+//   const rows = await db.query(
+//     `SELECT id, name FROM tasks LIMIT ?,?`, 
+//     [offset, config.listPerPage]
+//   );
+//   const data = helper.emptyOrRows(rows);
+//   const meta = {page};
 
-  let message = 'Error creating task.';
+//   return {
+//     data,
+//     meta
+//   }
+// }
 
-  if (result.affectedRows) {
-    message = 'Task created succesfully.';
-  }
+// async function create(name) {
+//   const result = await db.query(
+//     'INSERT INTO tasks(name) VALUES (?)', [name]
+//   );
 
-  return message;
-}
+//   let message = 'Error creating task.';
 
-async function update(id, name) {
-  const result = await db.query(
-    'UPDATE tasks SET name=? WHERE id=?', [name, id]
-  );
+//   if (result.affectedRows) {
+//     message = 'Task created succesfully.';
+//   }
 
-  let message = 'Error updating task.';
+//   return message;
+// }
 
-  if (result.affectedRows) {
-    message = 'Task updated succesfully.';
-  }
+// async function update(id, name) {
+//   const result = await db.query(
+//     'UPDATE tasks SET name=? WHERE id=?', [name, id]
+//   );
 
-  return message;
-}
+//   let message = 'Error updating task.';
 
-async function remove(id) {
-  const result = await db.query(
-    'DELETE FROM tasks WHERE id=?', [id]
-  );
+//   if (result.affectedRows) {
+//     message = 'Task updated succesfully.';
+//   }
 
-  let message = 'Error deleting task.';
+//   return message;
+// }
 
-  if (result.affectedRows) {
-    message = 'Task deleted succesfully.';
-  }
+// async function remove(id) {
+//   const result = await db.query(
+//     'DELETE FROM tasks WHERE id=?', [id]
+//   );
 
-  return message;
-}
+//   let message = 'Error deleting task.';
+
+//   if (result.affectedRows) {
+//     message = 'Task deleted succesfully.';
+//   }
+
+//   return message;
+// }
 
 module.exports = {
-  getMultiple,
-  create,
-  update,
-  remove
+  get,
+  // getMultiple,
+  // create,
+  // update,
+  // remove
 }
