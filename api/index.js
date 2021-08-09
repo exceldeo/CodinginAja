@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const tasksRouter = require("./routes/tasks");
+const ClassRouter = require("./routes/class");
+const CategoryRouter = require("./routes/category");
+const MaterialRouter = require("./routes/material");
+const SubMaterialRouter = require("./routes/submaterial");
 const config = require('./config');
 const app = express();
 
@@ -11,7 +14,10 @@ app.use(
   })
 );
 
-app.use("/api/tasks", tasksRouter);
+app.use("/api/class", ClassRouter);
+app.use("/api/category", CategoryRouter);
+app.use("/api/material", MaterialRouter);
+app.use("/api/submaterial", SubMaterialRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
