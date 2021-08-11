@@ -1,15 +1,17 @@
 const db = require('./db');
 const helper = require('../helper');
 const config = require('../config');
+const { Category } = require('../models')
 
 async function get() {
-  const rows = await db.query(
-    `SELECT * FROM categories`
-  );
-  const data = helper.emptyOrRows(rows);
+  try {
+    const category = await Category.findAll()
 
-  return data;
-  
+    return category
+  } catch (err) {
+    console.log(err)
+    return { error: 'Something went wrong' }
+  }
 }
 
 async function create(name_category,description) {

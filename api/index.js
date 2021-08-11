@@ -5,6 +5,7 @@ const CategoryRouter = require("./routes/category");
 const MaterialRouter = require("./routes/material");
 const SubMaterialRouter = require("./routes/submaterial");
 const config = require('./config');
+const { sequelize } = require('./models')
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,4 +28,8 @@ app.use((err, req, res, next) => {
   return;
 });
 
-app.listen(3000, () => console.log("Server is running at http://localhost:3000"));
+app.listen({ port: 3000 }, async () => {
+  console.log('Server up on http://localhost:3000')
+  await sequelize.authenticate()
+  console.log('Database Connected!')
+})
