@@ -16,7 +16,7 @@ async function get() {
 
 async function create(name_category,description) {
   const result = await db.query(
-    'INSERT INTO categories(name_category,description) VALUES (?,?)', [name_category,description]
+    'INSERT INTO categories (name_category,description) VALUES (?,?)', [name_category,description]
   );
 
   let message = 'Error creating categories.';

@@ -14,7 +14,7 @@ async function get() {
 
 async function create(title,description,classId) {
   const result = await db.query(
-    'INSERT INTO material(title,description,classId) VALUES (?,?,?)', [title,description,classId]
+    'INSERT INTO material (title,description,classId) VALUES (?,?,?)', [title,description,classId]
   );
 
   let message = 'Error creating material.';

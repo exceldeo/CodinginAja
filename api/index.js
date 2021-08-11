@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const ClassRouter = require("./routes/class");
+const CourseRouter = require("./routes/course");
 const CategoryRouter = require("./routes/category");
 const MaterialRouter = require("./routes/material");
 const SubMaterialRouter = require("./routes/submaterial");
@@ -15,7 +15,7 @@ app.use(
   })
 );
 
-app.use("/api/class", ClassRouter);
+app.use("/api/course", CourseRouter);
 app.use("/api/category", CategoryRouter);
 app.use("/api/material", MaterialRouter);
 app.use("/api/submaterial", SubMaterialRouter);

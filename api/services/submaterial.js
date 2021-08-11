@@ -14,7 +14,7 @@ async function get() {
 
 async function create(title,content,materialId) {
   const result = await db.query(
-    'INSERT INTO submaterial(title,content,materialId) VALUES (?,?,?)', [title,content,materialId]
+    'INSERT INTO submaterial (title,content,materialId) VALUES (?,?,?)', [title,content,materialId]
   );
 
   let message = 'Error creating submaterial.';
